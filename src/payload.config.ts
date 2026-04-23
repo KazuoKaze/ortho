@@ -60,6 +60,7 @@ export default buildConfig({
     'https://lastgoldfingersaesthetics.vercel.app',
     'https://frontend-self-gamma-99.vercel.app',
     'http://127.0.0.1:5500',
+    'https://ortho-delta.vercel.app',
   ],
   plugins: [],
 })
