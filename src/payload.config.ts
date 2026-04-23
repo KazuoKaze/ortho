@@ -61,6 +61,7 @@ export default buildConfig({
     'https://frontend-self-gamma-99.vercel.app',
     'http://127.0.0.1:5500',
     'https://ortho-delta.vercel.app',
+    'https://ortho-fl.web.app',
   ],
   plugins: [],
 })
