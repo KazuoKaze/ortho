@@ -76,6 +76,7 @@ export interface Config {
     'service-page-component': ServicePageComponent;
     'contact-page': ContactPage;
     'form-submissions': FormSubmission;
+    'find-a-clinic-page-component': FindAClinicPageComponent;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -92,6 +93,7 @@ export interface Config {
     'service-page-component': ServicePageComponentSelect<false> | ServicePageComponentSelect<true>;
     'contact-page': ContactPageSelect<false> | ContactPageSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
+    'find-a-clinic-page-component': FindAClinicPageComponentSelect<false> | FindAClinicPageComponentSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -2832,6 +2834,355 @@ export interface FormSubmission {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "find-a-clinic-page-component".
+ */
+export interface FindAClinicPageComponent {
+  id: string;
+  componentName: string;
+  clinicPanelSection?: {
+    show?: boolean | null;
+    /**
+     * CSS color value (e.g., #ffffff)
+     */
+    backgroundColor?: string | null;
+    /**
+     * CSS color value
+     */
+    textColor?: string | null;
+    ariaLabel?: string | null;
+    className?: string | null;
+    panelHead?: {
+      title?: string | null;
+      titleColor?: string | null;
+      titleFontSize?: string | null;
+      titleFontWeight?: string | null;
+      showBadge?: boolean | null;
+      badgeBackgroundColor?: string | null;
+      badgeTextColor?: string | null;
+    };
+    searchBox?: {
+      show?: boolean | null;
+      placeholder?: string | null;
+      backgroundColor?: string | null;
+      borderColor?: string | null;
+      focusBorderColor?: string | null;
+      iconColor?: string | null;
+      textColor?: string | null;
+      borderRadius?: string | null;
+    };
+    clinicListSettings?: {
+      cardBackgroundColor?: string | null;
+      cardHoverBackgroundColor?: string | null;
+      cardActiveBackgroundColor?: string | null;
+      cardBorderColor?: string | null;
+      cardActiveBorderColor?: string | null;
+      cardBorderRadius?: string | null;
+      cardPadding?: string | null;
+      cardGap?: string | null;
+      clinicNameColor?: string | null;
+      clinicNameFontSize?: string | null;
+      clinicNameFontWeight?: string | null;
+      doctorNameColor?: string | null;
+      doctorNameFontSize?: string | null;
+      specialtyColor?: string | null;
+      specialtyBackgroundColor?: string | null;
+      addressColor?: string | null;
+      phoneColor?: string | null;
+      iconColor?: string | null;
+    };
+    /**
+     * Drag to reorder clinic cards. Each card is fully editable.
+     */
+    clinics?:
+      | {
+          show?: boolean | null;
+          /**
+           * Unique identifier for this clinic
+           */
+          id: number;
+          name: string;
+          doctor: string;
+          address: string;
+          phone: string;
+          specialty: string;
+          /**
+           * GPS latitude coordinate for map pin
+           */
+          lat: number;
+          /**
+           * GPS longitude coordinate for map pin
+           */
+          lng: number;
+          /**
+           * URL-encoded address for Google Maps (e.g., 57+W+57th+St+New+York+NY)
+           */
+          mapQuery: string;
+          /**
+           * Leave empty to use global card background color
+           */
+          cardBackgroundColor?: string | null;
+          /**
+           * Leave empty to use global card text color
+           */
+          cardTextColor?: string | null;
+          image?: (string | null) | Media;
+          imageAlt?: string | null;
+          /**
+           * Drag to reorder links shown on this clinic card
+           */
+          externalLinks?:
+            | {
+                label: string;
+                url: string;
+                openInNewTab?: boolean | null;
+                linkColor?: string | null;
+                linkBackgroundColor?: string | null;
+                id?: string | null;
+              }[]
+            | null;
+        }[]
+      | null;
+  };
+  mapPanelSection?: {
+    show?: boolean | null;
+    ariaLabel?: string | null;
+    className?: string | null;
+    backgroundColor?: string | null;
+    mapSettings?: {
+      /**
+       * Google Maps embed URL shown before any clinic is selected
+       */
+      defaultEmbedUrl?: string | null;
+      mapTitle?: string | null;
+      allowFullscreen?: boolean | null;
+      lazyLoad?: boolean | null;
+      mapHeight?: string | null;
+      mapBorderRadius?: string | null;
+      /**
+       * Google Maps zoom level (1-21, higher = more zoomed in)
+       */
+      mapZoomLevel?: string | null;
+    };
+    toastSettings?: {
+      show?: boolean | null;
+      backgroundColor?: string | null;
+      textColor?: string | null;
+      borderRadius?: string | null;
+      fontSize?: string | null;
+      padding?: string | null;
+      position?: ('top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'top-center' | 'bottom-center') | null;
+      /**
+       * Set to 0 to disable auto dismiss
+       */
+      autoDismissDuration?: number | null;
+    };
+  };
+  layoutSettings?: {
+    /**
+     * CSS grid-template-columns (e.g., "1fr 1fr", "40% 60%", "380px 1fr")
+     */
+    splitRatio?: string | null;
+    /**
+     * CSS max-width (e.g., 1400px)
+     */
+    containerMaxWidth?: string | null;
+    /**
+     * CSS min-height (e.g., 100vh, 600px)
+     */
+    containerMinHeight?: string | null;
+    containerBackgroundColor?: string | null;
+    /**
+     * Stacks clinic list above map on small screens
+     */
+    stackOnMobile?: boolean | null;
+    mobileMapHeight?: string | null;
+    /**
+     * Scrollable list height on mobile
+     */
+    mobileClinicListMaxHeight?: string | null;
+    clinicListScrollable?: boolean | null;
+    clinicListMaxHeight?: string | null;
+  };
+  /**
+   * Drag to reorder the panels (left panel, right panel)
+   */
+  sectionOrder?:
+    | {
+        section: 'clinicPanel' | 'mapPanel';
+        id?: string | null;
+      }[]
+    | null;
+  globalStyles?: {
+    /**
+     * CSS font-family value
+     */
+    fontFamily?: string | null;
+    /**
+     * Used for active states, accents, and CTA elements
+     */
+    primaryColor?: string | null;
+    primaryHoverColor?: string | null;
+    secondaryColor?: string | null;
+    accentColor?: string | null;
+    successColor?: string | null;
+    warningColor?: string | null;
+    errorColor?: string | null;
+    textColor?: string | null;
+    mutedTextColor?: string | null;
+    linkColor?: string | null;
+    linkHoverColor?: string | null;
+    borderColor?: string | null;
+    shadowColor?: string | null;
+  };
+  typographySettings?: {
+    h1FontSize?: string | null;
+    h1Color?: string | null;
+    h1FontWeight?: string | null;
+    h2FontSize?: string | null;
+    h2Color?: string | null;
+    h2FontWeight?: string | null;
+    bodyFontSize?: string | null;
+    bodyLineHeight?: string | null;
+    paragraphSpacing?: string | null;
+  };
+  animationSettings?: {
+    enableAnimations?: boolean | null;
+    /**
+     * CSS transition value for card hover
+     */
+    cardHoverTransition?: string | null;
+    mapFadeInDuration?: string | null;
+    toastAnimationDuration?: string | null;
+    /**
+     * Delay before search filters are applied
+     */
+    searchDebounceMs?: number | null;
+    animationEasing?: string | null;
+  };
+  seoSettings?: {
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+    ogImage?: (string | null) | Media;
+    /**
+     * Comma-separated keywords for SEO
+     */
+    keywords?: string | null;
+    canonicalUrl?: string | null;
+    robots?: ('index,follow' | 'noindex,follow' | 'index,nofollow' | 'noindex,nofollow') | null;
+  };
+  accessibilitySettings?: {
+    skipToContent?: boolean | null;
+    ariaLabelsEnabled?: boolean | null;
+    clinicListAriaLabel?: string | null;
+    /**
+     * Announces map updates to screen readers
+     */
+    mapAriaLiveRegion?: boolean | null;
+    focusVisibleColor?: string | null;
+    contrastMode?: ('normal' | 'high' | 'very-high') | null;
+    keyboardNavigationEnabled?: boolean | null;
+  };
+  mobileSettings?: {
+    mobileBreakpoint?: string | null;
+    tabletBreakpoint?: string | null;
+    mobileLayout?: ('list-first' | 'map-first') | null;
+    mobileFontSizeAdjustment?: string | null;
+    mobileStackSections?: boolean | null;
+    /**
+     * Expand the map section by default on mobile
+     */
+    showMapOnMobileByDefault?: boolean | null;
+  };
+  advancedSettings?: {
+    /**
+     * Add custom CSS styles for this component
+     */
+    customCSS?: string | null;
+    /**
+     * Add custom JavaScript for this component
+     */
+    customJS?: string | null;
+    lazyLoadImages?: boolean | null;
+    enableCaching?: boolean | null;
+    /**
+     * Add custom data attributes to component elements
+     */
+    dataAttributes?:
+      | {
+          /**
+           * e.g., data-tracking-id
+           */
+          attribute?: string | null;
+          value?: string | null;
+          targetSection?: ('clinicPanel' | 'mapPanel' | 'root') | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  integrationSettings?: {
+    /**
+     * API key for Google Maps (used for dynamic map features)
+     */
+    googleMapsApiKey?: string | null;
+    /**
+     * Use Google Maps embed iframes instead of the Maps JS API
+     */
+    useEmbedMap?: boolean | null;
+    /**
+     * GA tracking ID for this component
+     */
+    googleAnalyticsId?: string | null;
+    /**
+     * Send GA events when users click clinic cards
+     */
+    trackClinicClicks?: boolean | null;
+    trackMapInteractions?: boolean | null;
+    trackSearchQueries?: boolean | null;
+  };
+  performanceSettings?: {
+    imageOptimization?: boolean | null;
+    /**
+     * Compression quality (1-100)
+     */
+    imageQuality?: string | null;
+    imageFormat?: ('auto' | 'webp' | 'avif' | 'jpeg' | 'png') | null;
+    /**
+     * Improves initial page load by loading the map iframe only when the user first interacts
+     */
+    deferMapLoad?: boolean | null;
+    minifyCSS?: boolean | null;
+    minifyJS?: boolean | null;
+    preloadCriticalAssets?: boolean | null;
+    enableCDN?: boolean | null;
+    /**
+     * Base URL for CDN (e.g., https://cdn.example.com)
+     */
+    cdnUrl?: string | null;
+  };
+  contentSettings?: {
+    /**
+     * Shown when search returns no clinics
+     */
+    noResultsMessage?: string | null;
+    noResultsTextColor?: string | null;
+    loadingMessage?: string | null;
+    phoneNumberFormat?: ('intl' | 'formatted' | 'dashed' | 'dotted') | null;
+    externalLinksOpenNewTab?: boolean | null;
+    showSpecialtyTag?: boolean | null;
+    showDoctorName?: boolean | null;
+    showPhone?: boolean | null;
+    showAddress?: boolean | null;
+    showCardLinks?: boolean | null;
+  };
+  /**
+   * Toggle to enable/disable this component
+   */
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -2889,6 +3240,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'form-submissions';
         value: string | FormSubmission;
+      } | null)
+    | ({
+        relationTo: 'find-a-clinic-page-component';
+        value: string | FindAClinicPageComponent;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -4847,6 +5202,273 @@ export interface FormSubmissionsSelect<T extends boolean = true> {
   utmMedium?: T;
   utmCampaign?: T;
   submittedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "find-a-clinic-page-component_select".
+ */
+export interface FindAClinicPageComponentSelect<T extends boolean = true> {
+  componentName?: T;
+  clinicPanelSection?:
+    | T
+    | {
+        show?: T;
+        backgroundColor?: T;
+        textColor?: T;
+        ariaLabel?: T;
+        className?: T;
+        panelHead?:
+          | T
+          | {
+              title?: T;
+              titleColor?: T;
+              titleFontSize?: T;
+              titleFontWeight?: T;
+              showBadge?: T;
+              badgeBackgroundColor?: T;
+              badgeTextColor?: T;
+            };
+        searchBox?:
+          | T
+          | {
+              show?: T;
+              placeholder?: T;
+              backgroundColor?: T;
+              borderColor?: T;
+              focusBorderColor?: T;
+              iconColor?: T;
+              textColor?: T;
+              borderRadius?: T;
+            };
+        clinicListSettings?:
+          | T
+          | {
+              cardBackgroundColor?: T;
+              cardHoverBackgroundColor?: T;
+              cardActiveBackgroundColor?: T;
+              cardBorderColor?: T;
+              cardActiveBorderColor?: T;
+              cardBorderRadius?: T;
+              cardPadding?: T;
+              cardGap?: T;
+              clinicNameColor?: T;
+              clinicNameFontSize?: T;
+              clinicNameFontWeight?: T;
+              doctorNameColor?: T;
+              doctorNameFontSize?: T;
+              specialtyColor?: T;
+              specialtyBackgroundColor?: T;
+              addressColor?: T;
+              phoneColor?: T;
+              iconColor?: T;
+            };
+        clinics?:
+          | T
+          | {
+              show?: T;
+              id?: T;
+              name?: T;
+              doctor?: T;
+              address?: T;
+              phone?: T;
+              specialty?: T;
+              lat?: T;
+              lng?: T;
+              mapQuery?: T;
+              cardBackgroundColor?: T;
+              cardTextColor?: T;
+              image?: T;
+              imageAlt?: T;
+              externalLinks?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                    openInNewTab?: T;
+                    linkColor?: T;
+                    linkBackgroundColor?: T;
+                    id?: T;
+                  };
+            };
+      };
+  mapPanelSection?:
+    | T
+    | {
+        show?: T;
+        ariaLabel?: T;
+        className?: T;
+        backgroundColor?: T;
+        mapSettings?:
+          | T
+          | {
+              defaultEmbedUrl?: T;
+              mapTitle?: T;
+              allowFullscreen?: T;
+              lazyLoad?: T;
+              mapHeight?: T;
+              mapBorderRadius?: T;
+              mapZoomLevel?: T;
+            };
+        toastSettings?:
+          | T
+          | {
+              show?: T;
+              backgroundColor?: T;
+              textColor?: T;
+              borderRadius?: T;
+              fontSize?: T;
+              padding?: T;
+              position?: T;
+              autoDismissDuration?: T;
+            };
+      };
+  layoutSettings?:
+    | T
+    | {
+        splitRatio?: T;
+        containerMaxWidth?: T;
+        containerMinHeight?: T;
+        containerBackgroundColor?: T;
+        stackOnMobile?: T;
+        mobileMapHeight?: T;
+        mobileClinicListMaxHeight?: T;
+        clinicListScrollable?: T;
+        clinicListMaxHeight?: T;
+      };
+  sectionOrder?:
+    | T
+    | {
+        section?: T;
+        id?: T;
+      };
+  globalStyles?:
+    | T
+    | {
+        fontFamily?: T;
+        primaryColor?: T;
+        primaryHoverColor?: T;
+        secondaryColor?: T;
+        accentColor?: T;
+        successColor?: T;
+        warningColor?: T;
+        errorColor?: T;
+        textColor?: T;
+        mutedTextColor?: T;
+        linkColor?: T;
+        linkHoverColor?: T;
+        borderColor?: T;
+        shadowColor?: T;
+      };
+  typographySettings?:
+    | T
+    | {
+        h1FontSize?: T;
+        h1Color?: T;
+        h1FontWeight?: T;
+        h2FontSize?: T;
+        h2Color?: T;
+        h2FontWeight?: T;
+        bodyFontSize?: T;
+        bodyLineHeight?: T;
+        paragraphSpacing?: T;
+      };
+  animationSettings?:
+    | T
+    | {
+        enableAnimations?: T;
+        cardHoverTransition?: T;
+        mapFadeInDuration?: T;
+        toastAnimationDuration?: T;
+        searchDebounceMs?: T;
+        animationEasing?: T;
+      };
+  seoSettings?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+        keywords?: T;
+        canonicalUrl?: T;
+        robots?: T;
+      };
+  accessibilitySettings?:
+    | T
+    | {
+        skipToContent?: T;
+        ariaLabelsEnabled?: T;
+        clinicListAriaLabel?: T;
+        mapAriaLiveRegion?: T;
+        focusVisibleColor?: T;
+        contrastMode?: T;
+        keyboardNavigationEnabled?: T;
+      };
+  mobileSettings?:
+    | T
+    | {
+        mobileBreakpoint?: T;
+        tabletBreakpoint?: T;
+        mobileLayout?: T;
+        mobileFontSizeAdjustment?: T;
+        mobileStackSections?: T;
+        showMapOnMobileByDefault?: T;
+      };
+  advancedSettings?:
+    | T
+    | {
+        customCSS?: T;
+        customJS?: T;
+        lazyLoadImages?: T;
+        enableCaching?: T;
+        dataAttributes?:
+          | T
+          | {
+              attribute?: T;
+              value?: T;
+              targetSection?: T;
+              id?: T;
+            };
+      };
+  integrationSettings?:
+    | T
+    | {
+        googleMapsApiKey?: T;
+        useEmbedMap?: T;
+        googleAnalyticsId?: T;
+        trackClinicClicks?: T;
+        trackMapInteractions?: T;
+        trackSearchQueries?: T;
+      };
+  performanceSettings?:
+    | T
+    | {
+        imageOptimization?: T;
+        imageQuality?: T;
+        imageFormat?: T;
+        deferMapLoad?: T;
+        minifyCSS?: T;
+        minifyJS?: T;
+        preloadCriticalAssets?: T;
+        enableCDN?: T;
+        cdnUrl?: T;
+      };
+  contentSettings?:
+    | T
+    | {
+        noResultsMessage?: T;
+        noResultsTextColor?: T;
+        loadingMessage?: T;
+        phoneNumberFormat?: T;
+        externalLinksOpenNewTab?: T;
+        showSpecialtyTag?: T;
+        showDoctorName?: T;
+        showPhone?: T;
+        showAddress?: T;
+        showCardLinks?: T;
+      };
+  isActive?: T;
   updatedAt?: T;
   createdAt?: T;
 }

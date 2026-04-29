@@ -14,6 +14,7 @@ import { AlleAwardsFullPageComponent } from './collections/AlleAwardsPageCompone
 import { ServicePageComponent } from './collections/ServicePageComponent'
 import { ContactPage } from './collections/ContactPage'
 import { FormSubmissions } from './collections/FormSubmissions'
+import { FindAClinicPageComponent } from './collections/FindAClinicPageComponent'
 
 
 const filename = fileURLToPath(import.meta.url)
@@ -37,6 +38,8 @@ export default buildConfig({
 
     ContactPage,
     FormSubmissions,
+
+    FindAClinicPageComponent,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
