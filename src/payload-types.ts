@@ -77,6 +77,8 @@ export interface Config {
     'contact-page': ContactPage;
     'form-submissions': FormSubmission;
     'find-a-clinic-page-component': FindAClinicPageComponent;
+    'privacy-policy-page-component': PrivacyPolicyPageComponent;
+    'terms-and-conditions-page-component': TermsAndConditionsPageComponent;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -94,6 +96,8 @@ export interface Config {
     'contact-page': ContactPageSelect<false> | ContactPageSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     'find-a-clinic-page-component': FindAClinicPageComponentSelect<false> | FindAClinicPageComponentSelect<true>;
+    'privacy-policy-page-component': PrivacyPolicyPageComponentSelect<false> | PrivacyPolicyPageComponentSelect<true>;
+    'terms-and-conditions-page-component': TermsAndConditionsPageComponentSelect<false> | TermsAndConditionsPageComponentSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -3183,6 +3187,538 @@ export interface FindAClinicPageComponent {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "privacy-policy-page-component".
+ */
+export interface PrivacyPolicyPageComponent {
+  id: string;
+  componentName: string;
+  heroSection: {
+    show?: boolean | null;
+    /**
+     * CSS color value (e.g., #ffffff, rgba(0,0,0,0.5))
+     */
+    backgroundColor?: string | null;
+    backgroundImage?: {
+      mobile?: (string | null) | Media;
+      tablet?: (string | null) | Media;
+      desktop?: (string | null) | Media;
+      large?: (string | null) | Media;
+      alt?: string | null;
+    };
+    /**
+     * Extra classes added to the <section> element
+     */
+    className?: string | null;
+    containerClassName?: string | null;
+    title: string;
+    /**
+     * CSS color value
+     */
+    titleColor?: string | null;
+    /**
+     * CSS font-size value (e.g., 48px, 3rem)
+     */
+    titleFontSize?: string | null;
+    titleClassName?: string | null;
+    /**
+     * data-w-id attribute value for Webflow scroll animation
+     */
+    animationDataId?: string | null;
+    /**
+     * Fades and slides the heading in on load
+     */
+    enableAnimation?: boolean | null;
+    /**
+     * How far down the element starts before animating in (e.g., 40px)
+     */
+    animationTranslateY?: string | null;
+    /**
+     * Starting blur amount (e.g., 10px)
+     */
+    animationBlur?: string | null;
+    /**
+     * CSS padding-top value
+     */
+    paddingTop?: string | null;
+    /**
+     * CSS padding-bottom value
+     */
+    paddingBottom?: string | null;
+  };
+  contentSection?: {
+    show?: boolean | null;
+    /**
+     * Extra classes added to the <section> element
+     */
+    className?: string | null;
+    containerClassName?: string | null;
+    /**
+     * CSS color value
+     */
+    backgroundColor?: string | null;
+    /**
+     * Default text color for this section
+     */
+    textColor?: string | null;
+    paddingTop?: string | null;
+    paddingBottom?: string | null;
+    rowWrapClassName?: string | null;
+    rowClassName?: string | null;
+    subheadingClassName?: string | null;
+    paragraphClassName?: string | null;
+    /**
+     * Drag to reorder rows. Each row has a subheading and body text.
+     */
+    textRows?:
+      | {
+          show?: boolean | null;
+          subheading: string;
+          /**
+           * Override the subheading color for this row
+           */
+          subheadingColor?: string | null;
+          subheadingFontSize?: string | null;
+          content: {
+            root: {
+              type: string;
+              children: {
+                type: any;
+                version: number;
+                [k: string]: unknown;
+              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
+            };
+            [k: string]: unknown;
+          };
+          /**
+           * Override the paragraph color for this row
+           */
+          contentColor?: string | null;
+          /**
+           * Optional background color for this row
+           */
+          backgroundColor?: string | null;
+          paddingTop?: string | null;
+          paddingBottom?: string | null;
+          className?: string | null;
+          /**
+           * Optional id attribute for deep-linking (e.g., personal-information)
+           */
+          anchorId?: string | null;
+          /**
+           * Optional links displayed below the body text. Drag to reorder.
+           */
+          links?:
+            | {
+                label: string;
+                url: string;
+                openInNewTab?: boolean | null;
+                ariaLabel?: string | null;
+                className?: string | null;
+                color?: string | null;
+                id?: string | null;
+              }[]
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Drag to reorder the page sections
+   */
+  sectionOrder?:
+    | {
+        section: 'hero' | 'content';
+        id?: string | null;
+      }[]
+    | null;
+  globalStyles?: {
+    /**
+     * CSS max-width (e.g., 1200px)
+     */
+    containerMaxWidth?: string | null;
+    /**
+     * CSS padding (e.g., 0 20px)
+     */
+    containerPadding?: string | null;
+    /**
+     * Gap between sections (e.g., 60px)
+     */
+    sectionSpacing?: string | null;
+    fontFamily?: string | null;
+    primaryColor?: string | null;
+    secondaryColor?: string | null;
+    textColor?: string | null;
+    linkColor?: string | null;
+    linkHoverColor?: string | null;
+  };
+  typographySettings?: {
+    h1FontSize?: string | null;
+    h1Color?: string | null;
+    h1FontWeight?: string | null;
+    h3FontSize?: string | null;
+    h3Color?: string | null;
+    h3FontWeight?: string | null;
+    bodyFontSize?: string | null;
+    bodyLineHeight?: string | null;
+    paragraphSpacing?: string | null;
+  };
+  seoSettings?: {
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+    ogImage?: (string | null) | Media;
+    /**
+     * Comma-separated keywords
+     */
+    keywords?: string | null;
+    canonicalUrl?: string | null;
+    robots?: ('index,follow' | 'noindex,follow' | 'index,nofollow' | 'noindex,nofollow') | null;
+  };
+  accessibilitySettings?: {
+    skipToContent?: boolean | null;
+    ariaLabelsEnabled?: boolean | null;
+    altTextRequired?: boolean | null;
+    focusVisibleColor?: string | null;
+    contrastMode?: ('normal' | 'high' | 'very-high') | null;
+  };
+  mobileSettings?: {
+    mobileBreakpoint?: string | null;
+    tabletBreakpoint?: string | null;
+    mobileFontSizeAdjustment?: string | null;
+    mobileSpacingAdjustment?: string | null;
+    mobileStackSections?: boolean | null;
+  };
+  animationSettings?: {
+    enableAnimations?: boolean | null;
+    fadeInDuration?: string | null;
+    fadeInDelay?: string | null;
+    animationEasing?: string | null;
+    enableWowAnimations?: boolean | null;
+    wowOffset?: string | null;
+  };
+  advancedSettings?: {
+    /**
+     * Add custom CSS styles for this page
+     */
+    customCSS?: string | null;
+    /**
+     * Add custom JavaScript code for this page
+     */
+    customJS?: string | null;
+    lazyLoadImages?: boolean | null;
+    enableCaching?: boolean | null;
+    preloadImages?: boolean | null;
+    /**
+     * Add custom data attributes to page elements
+     */
+    dataAttributes?:
+      | {
+          /**
+           * e.g., data-tracking-id
+           */
+          attribute?: string | null;
+          value?: string | null;
+          targetSection?: ('hero' | 'content') | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  integrationSettings?: {
+    googleAnalyticsId?: string | null;
+    facebookPixelId?: string | null;
+    conversionTrackingEnabled?: boolean | null;
+  };
+  performanceSettings?: {
+    imageOptimization?: boolean | null;
+    imageQuality?: string | null;
+    imageFormat?: ('auto' | 'webp' | 'avif' | 'jpeg' | 'png') | null;
+    /**
+     * Comma-separated widths (e.g., 420,800,1400)
+     */
+    responsiveImageSizes?: string | null;
+    minifyCSS?: boolean | null;
+    minifyJS?: boolean | null;
+    enableCDN?: boolean | null;
+    cdnUrl?: string | null;
+  };
+  /**
+   * Toggle to enable/disable this component
+   */
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "terms-and-conditions-page-component".
+ */
+export interface TermsAndConditionsPageComponent {
+  id: string;
+  componentName: string;
+  heroSection: {
+    show?: boolean | null;
+    /**
+     * CSS color value (e.g., #ffffff, rgba(0,0,0,0.5))
+     */
+    backgroundColor?: string | null;
+    backgroundImage?: {
+      mobile?: (string | null) | Media;
+      tablet?: (string | null) | Media;
+      desktop?: (string | null) | Media;
+      large?: (string | null) | Media;
+      alt?: string | null;
+    };
+    /**
+     * Extra classes added to the <section> element
+     */
+    className?: string | null;
+    containerClassName?: string | null;
+    title: string;
+    /**
+     * CSS color value
+     */
+    titleColor?: string | null;
+    /**
+     * CSS font-size value (e.g., 48px, 3rem)
+     */
+    titleFontSize?: string | null;
+    titleClassName?: string | null;
+    /**
+     * data-w-id attribute value for Webflow scroll animation
+     */
+    animationDataId?: string | null;
+    /**
+     * Fades and slides the heading in on load
+     */
+    enableAnimation?: boolean | null;
+    /**
+     * How far down the element starts before animating in (e.g., 40px)
+     */
+    animationTranslateY?: string | null;
+    /**
+     * Starting blur amount (e.g., 10px)
+     */
+    animationBlur?: string | null;
+    /**
+     * CSS padding-top value
+     */
+    paddingTop?: string | null;
+    /**
+     * CSS padding-bottom value
+     */
+    paddingBottom?: string | null;
+  };
+  contentSection?: {
+    show?: boolean | null;
+    /**
+     * Extra classes added to the <section> element
+     */
+    className?: string | null;
+    containerClassName?: string | null;
+    /**
+     * CSS color value
+     */
+    backgroundColor?: string | null;
+    /**
+     * Default text color for this section
+     */
+    textColor?: string | null;
+    paddingTop?: string | null;
+    paddingBottom?: string | null;
+    rowWrapClassName?: string | null;
+    rowClassName?: string | null;
+    subheadingClassName?: string | null;
+    paragraphClassName?: string | null;
+    /**
+     * Drag to reorder rows. Each row has a subheading and body text.
+     */
+    textRows?:
+      | {
+          show?: boolean | null;
+          subheading: string;
+          /**
+           * Override the subheading color for this row
+           */
+          subheadingColor?: string | null;
+          subheadingFontSize?: string | null;
+          content: {
+            root: {
+              type: string;
+              children: {
+                type: any;
+                version: number;
+                [k: string]: unknown;
+              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
+            };
+            [k: string]: unknown;
+          };
+          /**
+           * Override the paragraph color for this row
+           */
+          contentColor?: string | null;
+          /**
+           * Optional background color for this row
+           */
+          backgroundColor?: string | null;
+          paddingTop?: string | null;
+          paddingBottom?: string | null;
+          className?: string | null;
+          /**
+           * Optional id attribute for deep-linking (e.g., introduction)
+           */
+          anchorId?: string | null;
+          /**
+           * Optional links displayed below the body text. Drag to reorder.
+           */
+          links?:
+            | {
+                label: string;
+                url: string;
+                openInNewTab?: boolean | null;
+                ariaLabel?: string | null;
+                className?: string | null;
+                color?: string | null;
+                id?: string | null;
+              }[]
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Drag to reorder the page sections
+   */
+  sectionOrder?:
+    | {
+        section: 'hero' | 'content';
+        id?: string | null;
+      }[]
+    | null;
+  globalStyles?: {
+    /**
+     * CSS max-width (e.g., 1200px)
+     */
+    containerMaxWidth?: string | null;
+    /**
+     * CSS padding (e.g., 0 20px)
+     */
+    containerPadding?: string | null;
+    /**
+     * Gap between sections (e.g., 60px)
+     */
+    sectionSpacing?: string | null;
+    fontFamily?: string | null;
+    primaryColor?: string | null;
+    secondaryColor?: string | null;
+    textColor?: string | null;
+    linkColor?: string | null;
+    linkHoverColor?: string | null;
+  };
+  typographySettings?: {
+    h1FontSize?: string | null;
+    h1Color?: string | null;
+    h1FontWeight?: string | null;
+    h3FontSize?: string | null;
+    h3Color?: string | null;
+    h3FontWeight?: string | null;
+    bodyFontSize?: string | null;
+    bodyLineHeight?: string | null;
+    paragraphSpacing?: string | null;
+  };
+  seoSettings?: {
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+    ogImage?: (string | null) | Media;
+    /**
+     * Comma-separated keywords
+     */
+    keywords?: string | null;
+    canonicalUrl?: string | null;
+    robots?: ('index,follow' | 'noindex,follow' | 'index,nofollow' | 'noindex,nofollow') | null;
+  };
+  accessibilitySettings?: {
+    skipToContent?: boolean | null;
+    ariaLabelsEnabled?: boolean | null;
+    altTextRequired?: boolean | null;
+    focusVisibleColor?: string | null;
+    contrastMode?: ('normal' | 'high' | 'very-high') | null;
+  };
+  mobileSettings?: {
+    mobileBreakpoint?: string | null;
+    tabletBreakpoint?: string | null;
+    mobileFontSizeAdjustment?: string | null;
+    mobileSpacingAdjustment?: string | null;
+    mobileStackSections?: boolean | null;
+  };
+  animationSettings?: {
+    enableAnimations?: boolean | null;
+    fadeInDuration?: string | null;
+    fadeInDelay?: string | null;
+    animationEasing?: string | null;
+    enableWowAnimations?: boolean | null;
+    wowOffset?: string | null;
+  };
+  advancedSettings?: {
+    /**
+     * Add custom CSS styles for this page
+     */
+    customCSS?: string | null;
+    /**
+     * Add custom JavaScript code for this page
+     */
+    customJS?: string | null;
+    lazyLoadImages?: boolean | null;
+    enableCaching?: boolean | null;
+    preloadImages?: boolean | null;
+    /**
+     * Add custom data attributes to page elements
+     */
+    dataAttributes?:
+      | {
+          /**
+           * e.g., data-tracking-id
+           */
+          attribute?: string | null;
+          value?: string | null;
+          targetSection?: ('hero' | 'content') | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  integrationSettings?: {
+    googleAnalyticsId?: string | null;
+    facebookPixelId?: string | null;
+    conversionTrackingEnabled?: boolean | null;
+  };
+  performanceSettings?: {
+    imageOptimization?: boolean | null;
+    imageQuality?: string | null;
+    imageFormat?: ('auto' | 'webp' | 'avif' | 'jpeg' | 'png') | null;
+    /**
+     * Comma-separated widths (e.g., 420,800,1400)
+     */
+    responsiveImageSizes?: string | null;
+    minifyCSS?: boolean | null;
+    minifyJS?: boolean | null;
+    enableCDN?: boolean | null;
+    cdnUrl?: string | null;
+  };
+  /**
+   * Toggle to enable/disable this component
+   */
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -3244,6 +3780,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'find-a-clinic-page-component';
         value: string | FindAClinicPageComponent;
+      } | null)
+    | ({
+        relationTo: 'privacy-policy-page-component';
+        value: string | PrivacyPolicyPageComponent;
+      } | null)
+    | ({
+        relationTo: 'terms-and-conditions-page-component';
+        value: string | TermsAndConditionsPageComponent;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -5467,6 +6011,376 @@ export interface FindAClinicPageComponentSelect<T extends boolean = true> {
         showPhone?: T;
         showAddress?: T;
         showCardLinks?: T;
+      };
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "privacy-policy-page-component_select".
+ */
+export interface PrivacyPolicyPageComponentSelect<T extends boolean = true> {
+  componentName?: T;
+  heroSection?:
+    | T
+    | {
+        show?: T;
+        backgroundColor?: T;
+        backgroundImage?:
+          | T
+          | {
+              mobile?: T;
+              tablet?: T;
+              desktop?: T;
+              large?: T;
+              alt?: T;
+            };
+        className?: T;
+        containerClassName?: T;
+        title?: T;
+        titleColor?: T;
+        titleFontSize?: T;
+        titleClassName?: T;
+        animationDataId?: T;
+        enableAnimation?: T;
+        animationTranslateY?: T;
+        animationBlur?: T;
+        paddingTop?: T;
+        paddingBottom?: T;
+      };
+  contentSection?:
+    | T
+    | {
+        show?: T;
+        className?: T;
+        containerClassName?: T;
+        backgroundColor?: T;
+        textColor?: T;
+        paddingTop?: T;
+        paddingBottom?: T;
+        rowWrapClassName?: T;
+        rowClassName?: T;
+        subheadingClassName?: T;
+        paragraphClassName?: T;
+        textRows?:
+          | T
+          | {
+              show?: T;
+              subheading?: T;
+              subheadingColor?: T;
+              subheadingFontSize?: T;
+              content?: T;
+              contentColor?: T;
+              backgroundColor?: T;
+              paddingTop?: T;
+              paddingBottom?: T;
+              className?: T;
+              anchorId?: T;
+              links?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                    openInNewTab?: T;
+                    ariaLabel?: T;
+                    className?: T;
+                    color?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+      };
+  sectionOrder?:
+    | T
+    | {
+        section?: T;
+        id?: T;
+      };
+  globalStyles?:
+    | T
+    | {
+        containerMaxWidth?: T;
+        containerPadding?: T;
+        sectionSpacing?: T;
+        fontFamily?: T;
+        primaryColor?: T;
+        secondaryColor?: T;
+        textColor?: T;
+        linkColor?: T;
+        linkHoverColor?: T;
+      };
+  typographySettings?:
+    | T
+    | {
+        h1FontSize?: T;
+        h1Color?: T;
+        h1FontWeight?: T;
+        h3FontSize?: T;
+        h3Color?: T;
+        h3FontWeight?: T;
+        bodyFontSize?: T;
+        bodyLineHeight?: T;
+        paragraphSpacing?: T;
+      };
+  seoSettings?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+        keywords?: T;
+        canonicalUrl?: T;
+        robots?: T;
+      };
+  accessibilitySettings?:
+    | T
+    | {
+        skipToContent?: T;
+        ariaLabelsEnabled?: T;
+        altTextRequired?: T;
+        focusVisibleColor?: T;
+        contrastMode?: T;
+      };
+  mobileSettings?:
+    | T
+    | {
+        mobileBreakpoint?: T;
+        tabletBreakpoint?: T;
+        mobileFontSizeAdjustment?: T;
+        mobileSpacingAdjustment?: T;
+        mobileStackSections?: T;
+      };
+  animationSettings?:
+    | T
+    | {
+        enableAnimations?: T;
+        fadeInDuration?: T;
+        fadeInDelay?: T;
+        animationEasing?: T;
+        enableWowAnimations?: T;
+        wowOffset?: T;
+      };
+  advancedSettings?:
+    | T
+    | {
+        customCSS?: T;
+        customJS?: T;
+        lazyLoadImages?: T;
+        enableCaching?: T;
+        preloadImages?: T;
+        dataAttributes?:
+          | T
+          | {
+              attribute?: T;
+              value?: T;
+              targetSection?: T;
+              id?: T;
+            };
+      };
+  integrationSettings?:
+    | T
+    | {
+        googleAnalyticsId?: T;
+        facebookPixelId?: T;
+        conversionTrackingEnabled?: T;
+      };
+  performanceSettings?:
+    | T
+    | {
+        imageOptimization?: T;
+        imageQuality?: T;
+        imageFormat?: T;
+        responsiveImageSizes?: T;
+        minifyCSS?: T;
+        minifyJS?: T;
+        enableCDN?: T;
+        cdnUrl?: T;
+      };
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "terms-and-conditions-page-component_select".
+ */
+export interface TermsAndConditionsPageComponentSelect<T extends boolean = true> {
+  componentName?: T;
+  heroSection?:
+    | T
+    | {
+        show?: T;
+        backgroundColor?: T;
+        backgroundImage?:
+          | T
+          | {
+              mobile?: T;
+              tablet?: T;
+              desktop?: T;
+              large?: T;
+              alt?: T;
+            };
+        className?: T;
+        containerClassName?: T;
+        title?: T;
+        titleColor?: T;
+        titleFontSize?: T;
+        titleClassName?: T;
+        animationDataId?: T;
+        enableAnimation?: T;
+        animationTranslateY?: T;
+        animationBlur?: T;
+        paddingTop?: T;
+        paddingBottom?: T;
+      };
+  contentSection?:
+    | T
+    | {
+        show?: T;
+        className?: T;
+        containerClassName?: T;
+        backgroundColor?: T;
+        textColor?: T;
+        paddingTop?: T;
+        paddingBottom?: T;
+        rowWrapClassName?: T;
+        rowClassName?: T;
+        subheadingClassName?: T;
+        paragraphClassName?: T;
+        textRows?:
+          | T
+          | {
+              show?: T;
+              subheading?: T;
+              subheadingColor?: T;
+              subheadingFontSize?: T;
+              content?: T;
+              contentColor?: T;
+              backgroundColor?: T;
+              paddingTop?: T;
+              paddingBottom?: T;
+              className?: T;
+              anchorId?: T;
+              links?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                    openInNewTab?: T;
+                    ariaLabel?: T;
+                    className?: T;
+                    color?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+      };
+  sectionOrder?:
+    | T
+    | {
+        section?: T;
+        id?: T;
+      };
+  globalStyles?:
+    | T
+    | {
+        containerMaxWidth?: T;
+        containerPadding?: T;
+        sectionSpacing?: T;
+        fontFamily?: T;
+        primaryColor?: T;
+        secondaryColor?: T;
+        textColor?: T;
+        linkColor?: T;
+        linkHoverColor?: T;
+      };
+  typographySettings?:
+    | T
+    | {
+        h1FontSize?: T;
+        h1Color?: T;
+        h1FontWeight?: T;
+        h3FontSize?: T;
+        h3Color?: T;
+        h3FontWeight?: T;
+        bodyFontSize?: T;
+        bodyLineHeight?: T;
+        paragraphSpacing?: T;
+      };
+  seoSettings?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+        keywords?: T;
+        canonicalUrl?: T;
+        robots?: T;
+      };
+  accessibilitySettings?:
+    | T
+    | {
+        skipToContent?: T;
+        ariaLabelsEnabled?: T;
+        altTextRequired?: T;
+        focusVisibleColor?: T;
+        contrastMode?: T;
+      };
+  mobileSettings?:
+    | T
+    | {
+        mobileBreakpoint?: T;
+        tabletBreakpoint?: T;
+        mobileFontSizeAdjustment?: T;
+        mobileSpacingAdjustment?: T;
+        mobileStackSections?: T;
+      };
+  animationSettings?:
+    | T
+    | {
+        enableAnimations?: T;
+        fadeInDuration?: T;
+        fadeInDelay?: T;
+        animationEasing?: T;
+        enableWowAnimations?: T;
+        wowOffset?: T;
+      };
+  advancedSettings?:
+    | T
+    | {
+        customCSS?: T;
+        customJS?: T;
+        lazyLoadImages?: T;
+        enableCaching?: T;
+        preloadImages?: T;
+        dataAttributes?:
+          | T
+          | {
+              attribute?: T;
+              value?: T;
+              targetSection?: T;
+              id?: T;
+            };
+      };
+  integrationSettings?:
+    | T
+    | {
+        googleAnalyticsId?: T;
+        facebookPixelId?: T;
+        conversionTrackingEnabled?: T;
+      };
+  performanceSettings?:
+    | T
+    | {
+        imageOptimization?: T;
+        imageQuality?: T;
+        imageFormat?: T;
+        responsiveImageSizes?: T;
+        minifyCSS?: T;
+        minifyJS?: T;
+        enableCDN?: T;
+        cdnUrl?: T;
       };
   isActive?: T;
   updatedAt?: T;

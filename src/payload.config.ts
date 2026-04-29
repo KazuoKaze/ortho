@@ -15,6 +15,8 @@ import { ServicePageComponent } from './collections/ServicePageComponent'
 import { ContactPage } from './collections/ContactPage'
 import { FormSubmissions } from './collections/FormSubmissions'
 import { FindAClinicPageComponent } from './collections/FindAClinicPageComponent'
+import { PrivacyPolicyPageComponent } from './collections/PrivacyPolicyPageComponent'
+import { TermsAndConditionsPageComponent } from './collections/TermsAndConditionsPageComponent'
 
 
 const filename = fileURLToPath(import.meta.url)
@@ -40,6 +42,8 @@ export default buildConfig({
     FormSubmissions,
 
     FindAClinicPageComponent,
+    PrivacyPolicyPageComponent,
+    TermsAndConditionsPageComponent,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
